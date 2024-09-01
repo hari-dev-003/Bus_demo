@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Management App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>Delhi Bus Corparation</h2>
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#buses">Buses</a></li>
+                <li><a href="#routes">Routes</a></li>
+                <li><a href="#drivers">Drivers</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            <section id="dashboard">
+                <h1>Dashboard</h1>
+                <p>Welcome to the Bus Management System!</p>
+            </section>
+            <section id="buses">
+                <h1>Buses</h1>
+                <form id="busForm">
+                    <input type="text" id="busNumber" placeholder="Bus Number" required>
+                    <input type="text" id="busModel" placeholder="Bus Model" required>
+                    <button type="submit">Add Bus</button>
+                </form>
+                <ul id="busList"></ul>
+            </section>
+            <section id="routes">
+                <h1>Routes</h1>
+                <form id="routeForm">
+                    <input type="text" id="routeName" placeholder="Route Name" required>
+                    <input type="text" id="routeDestination" placeholder="Destination" required>
+                    <button type="submit">Add Route</button>
+                </form>
+                <ul id="routeList"></ul>
+            </section>
+            <section id="drivers">
+                <h1>Drivers</h1>
+                <form id="driverForm">
+                    <input type="text" id="driverName" placeholder="Driver Name" required>
+                    <input type="text" id="driverLicense" placeholder="License Number" required>
+                    <button type="submit">Add Driver</button>
+                </form>
+                <ul id="driverList"></ul>
+            </section>
+            <section id="settings">
+                <h1>Settings</h1>
+                <form id="profileForm">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <button type="submit">Update Profile</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
