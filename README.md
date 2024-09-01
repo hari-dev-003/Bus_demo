@@ -36,11 +36,24 @@ The Bus Management System is a web application that allows users to manage bus r
 
 If you would like to contribute to the Bus Management System project, please follow these steps:
 
-1. Fork the repository
+1. Fork the repository.
 2. Create a new branch for your feature or bug fix
-3. Make your changes and commit them
-4. Push your changes to your fork
-5. Submit a pull request
+ ```bash
+  git checkout -b feature/your-feature-name
+   ```
+4. Make your changes and commit them
+  ```bash
+  git add .
+  git commit -m "Brief description of your changes"
+  ```
+5. Push your changes to your fork
+  ```bash
+  git push origin feature/your-feature-name
+  ```
+6. Submit a pull request
+ ```bash
+ git request-pull
+ ```
 
 ## License
 
