@@ -1,3 +1,24 @@
+
+
+let buses = [];
+let routes = [];
+let drivers = [];
+
+
+
+
+function showSection(sectionId) {
+    // Hide all sections
+    var sections = document.querySelectorAll('section');
+    sections.forEach(function(section) {
+        section.style.display = 'none';
+    });
+
+    // Show the selected section
+    var selectedSection = document.getElementById(sectionId);
+    selectedSection.style.display = 'block';
+}
+
 // Function to add items to local storage and update the UI
 function addToLocalStorage(key, item) {
     const items = JSON.parse(localStorage.getItem(key)) || [];
@@ -63,6 +84,19 @@ document.getElementById('busForm').addEventListener('submit', function(e) {
     displayItems('buses', document.getElementById('busList'));
     busNumber.value = '';
     busModel.value = '';
+
+
+    const busEntry = {
+        name: busNumber,
+        model: busModel
+    };
+
+
+    buses.push(busEntry);
+
+    document.getElementById('totalBuses').textContent = buses.length;
+
+    document.getElementById('busForm').reset();
 });
 
 // Route Form Handling
@@ -78,6 +112,22 @@ document.getElementById('routeForm').addEventListener('submit', function(e) {
     displayItems('routes', document.getElementById('routeList'));
     routeName.value = '';
     routeDestination.value = '';
+
+
+    const routeEntry = {
+        name: routeName,
+        start: routeDestination,
+     
+    };
+
+    // Add the route entry to the list
+    routes.push(routeEntry);
+
+    // Update the total routes count in the dashboard
+    document.getElementById('totalRoutes').textContent = routes.length;
+
+    // Clear the form
+    document.getElementById('routeForm').reset();
 });
 
 // Driver Form Handling
@@ -93,6 +143,26 @@ document.getElementById('driverForm').addEventListener('submit', function(e) {
     displayItems('drivers', document.getElementById('driverList'));
     driverName.value = '';
     driverLicense.value = '';
+
+    const driverEntry = {
+        name: driverName,
+        license: driverLicense
+    };
+
+    // Add the driver entry to the list
+    drivers.push(driverEntry);
+
+    // Update the total drivers count in the dashboard
+    document.getElementById('totalDrivers').textContent = drivers.length;
+
+    // Clear the form
+    document.getElementById('driverForm').reset();
+
+    // Remove the total drivers count in the dashboard when the driver is deleted from the list 
+    if(drivers.length === 0) {
+        document.getElementById('totalDrivers').textContent = '';
+    }
+
 });
 
 // Display initial items on load
@@ -169,27 +239,4 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
 });
 
 
-// Function to handle login
-async function login(username, password) {
-    const response = await fetch('http://localhost:5000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    });
-    return response.json();
-}
 
-// Handle login form submission
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const result = await login(username, password);
-    if (result.token) {
-        localStorage.setItem('token', result.token);
-        alert('Login successful');
-        // Redirect to dashboard or load dashboard data
-    } else {
-        alert(result.message);
-    }
-});
