@@ -12,17 +12,30 @@
         <nav class="sidebar">
             <h2>Delhi Bus Corparation</h2>
             <ul>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#buses">Buses</a></li>
-                <li><a href="#routes">Routes</a></li>
-                <li><a href="#drivers">Drivers</a></li>
-                <li><a href="#settings">Settings</a></li>
+                <li><a href="#dashboard" onclick="showSection('dashboard')">Dashboard</a></li>
+                <li><a href="#buses" onclick="showSection('buses')">Buses</a></li>
+                <li><a href="#routes" onclick="showSection('routes')">Routes</a></li>
+                <li><a href="#drivers" onclick="showSection('drivers')">Drivers</a></li>
+                <li><a href="#settings" onclick="showSection('settings')">Settings</a></li>
             </ul>
         </nav>
         <main class="content">
-            <section id="dashboard">
-                <h1>Dashboard</h1>
-                <p>Welcome to the Bus Management System!</p>
+            <section id="dashboard" class="dashboard1">
+                
+                    <h1>Dashboard</h1>
+                    <div class="dashboard-stats">
+                        <div class="stat">
+                            <h3>Total Buses</h3>
+                            <p id="totalBuses">0</p>
+                        </div>
+                        <div class="stat">
+                            <h3>Total Routes</h3>
+                            <p id="totalRoutes">0</p>
+                        </div>
+                        <div class="stat">
+                            <h3>Total Drivers</h3>
+                            <p id="totalDrivers">0</p>
+                        </div>
             </section>
             <section id="buses">
                 <h1>Buses</h1>
