@@ -8,15 +8,6 @@ let drivers = [];
 
 
 function showSection(sectionId) {
-    // // Hide all sections
-    // var sections = document.querySelectorAll('section');
-    // sections.forEach(function(section) {
-    //     section.style.display = 'none';
-    // });
-
-    // // Show the selected section
-    // var selectedSection = document.getElementById(sectionId);
-    // selectedSection.style.display = 'block';
     const sections = document.querySelectorAll('main > section');
   sections.forEach((section) => {
     section.style.display = 'none';
@@ -244,4 +235,67 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
 });
 
 
+// Assume you have a MongoDB API endpoint to fetch data
+const apiUrl = 'https://your-mongodb-api.com/api';
 
+// Function to fetch data from MongoDB API
+async function fetchData(endpoint) {
+  try {
+    const response = await fetch(`${apiUrl}/${endpoint}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+// Fetch data for each section
+fetchData('drivers').then((drivers) => {
+  const driverList = document.getElementById('driverList');
+  drivers.forEach((driver) => {
+    const driverListItem = document.createElement('tr');
+    driverListItem.innerHTML = `
+      <td>${driver.name}</td>
+      <td>${driver.license}</td>
+    `;
+    driverList.appendChild(driverListItem);
+  });
+  totalDrivers = drivers.length;
+  updateDashboardStats();
+});
+
+fetchData('routes').then((routes) => {
+  const routeList = document.getElementById('routeList');
+  routes.forEach((route) => {
+    const routeListItem = document.createElement('tr');
+    routeListItem.innerHTML = `
+      <td>${route.name}</td>
+      <td>${route.destination}</td>
+    `;
+    routeList.appendChild(routeListItem);
+  });
+  totalRoutes = routes.length;
+  updateDashboardStats();
+});
+
+fetchData('buses').then((buses) => {
+  const busList = document.getElementById('busList');
+  buses.forEach((bus) => {
+    const busListItem = document.createElement('tr');
+    busListItem.innerHTML = `
+      <td>${bus.number}</td>
+      <td>${bus.model}</td>
+    `;
+    busList.appendChild(busListItem);
+  });
+  totalBuses = buses.length;
+  updateDashboardStats();
+});
+
+// Update dashboard stats
+function updateDashboardStats() {
+  document.getElementById('totalBuses').textContent = totalBuses;
+  document.getElementById('totalRoutes').textContent = totalRoutes;
+  document.getElementById('totalDrivers').textContent = totalDrivers;
+}
