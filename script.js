@@ -8,15 +8,20 @@ let drivers = [];
 
 
 function showSection(sectionId) {
-    // Hide all sections
-    var sections = document.querySelectorAll('section');
-    sections.forEach(function(section) {
-        section.style.display = 'none';
-    });
+    // // Hide all sections
+    // var sections = document.querySelectorAll('section');
+    // sections.forEach(function(section) {
+    //     section.style.display = 'none';
+    // });
 
-    // Show the selected section
-    var selectedSection = document.getElementById(sectionId);
-    selectedSection.style.display = 'block';
+    // // Show the selected section
+    // var selectedSection = document.getElementById(sectionId);
+    // selectedSection.style.display = 'block';
+    const sections = document.querySelectorAll('main > section');
+  sections.forEach((section) => {
+    section.style.display = 'none';
+  });
+  document.getElementById(sectionId).style.display = 'block';
 }
 
 // Function to add items to local storage and update the UI
